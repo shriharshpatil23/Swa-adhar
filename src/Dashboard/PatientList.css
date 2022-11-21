@@ -1,0 +1,9 @@
+.table{
+    position: relative;
+    height: 90%;
+    overflow-y: scroll;
+}
+img{
+    margin-left: 30%;
+    height: 500px;
+}
