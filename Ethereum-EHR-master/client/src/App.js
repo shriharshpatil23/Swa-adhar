@@ -8,6 +8,9 @@ import DocLogin from "./Components/DocLogin";
 import Doctor from "./Components/Doctor";
 import Patient from "./Components/Patient";
 import NavbarComp from "./Components/NavbarComp";
+import Fileupload from "./Components/fileupload";
+import Filedownload from "./Components/filedownload";
+
 
 import "./App.css";
 import "./Components/css/antd.css"
@@ -49,31 +52,38 @@ class App extends Component {
   render() {
     //console.log(this.state.loggedas);   //uncomment to check if comonents are loaded
     
-    if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
+    // if (!this.state.web3) {
+    //   return <div>Loading Web3, accounts, and contract...</div>;
+    // }
     //Html template will call register page or if already regestered login page will be open
     //DocLogin file will be intiated
     return (
-      <div className="App">
-        <NavbarComp isLogged={this.state.loggedAcc} onlogout={()=>this.setState({loggedAcc:null,loggedas:null})}/>
-        {/* <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-              Value of Variable is {this.state.newValue}  
-          </div>  
-          <input type="text" value={this.state.newValue} onChange={this.handleChange.bind(this)}></input>
-          <input type="submit" value="Submit"/>
+      // <div className="App">
+      //   <NavbarComp isLogged={this.state.loggedAcc} onlogout={()=>this.setState({loggedAcc:null,loggedas:null})}/>
+      //   {/* <h1>Good to Go!</h1>
+      //   <p>Your Truffle Box is installed and ready.</p>
+      //   <h2>Smart Contract Example</h2>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <div>
+      //         Value of Variable is {this.state.newValue}  
+      //     </div>  
+      //     <input type="text" value={this.state.newValue} onChange={this.handleChange.bind(this)}></input>
+      //     <input type="submit" value="Submit"/>
           
-          </form> */}
-          {!this.state.loggedAcc ? <DocLogin onlogin={(loggedAcc,loggedas)=>this.setState({loggedAcc,loggedas})} state = {this.state}/>
-               :this.state.loggedas==0?<Doctor contract={this.state.contract} Acc={this.state.accounts}/>:<Patient contract={this.state.contract} Acc={this.state.accounts}/>}
+      //     </form> */}
+      //     {!this.state.loggedAcc ? <DocLogin onlogin={(loggedAcc,loggedas)=>this.setState({loggedAcc,loggedas})} state = {this.state}/>
+      //          :this.state.loggedas==0?<Doctor contract={this.state.contract} Acc={this.state.accounts}/>:<Patient contract={this.state.contract} Acc={this.state.accounts}/>}
                
-               </div>
-               
-    );
+      //          </div>
+      <div>
+        <Fileupload/>      
+        <br></br>
+        <hr></hr>
+        <Filedownload/>      
+
+           
+      </div>
+      );
   }
 }
 

@@ -8,7 +8,7 @@ function doctor() {
 
   const demo =
     <>
-
+      <h1>Hello from doctor </h1>
     </>;
 
   return (

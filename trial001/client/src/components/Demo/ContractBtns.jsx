@@ -31,16 +31,7 @@ function ContractBtns({ setValue }) {
       value = await contract.methods.AddUser().send({ from: accounts[0] });
       console.log(value);
     }
-
   };
-
-
-
-  
-
-
-
-  
 
   const read = async () => {
     const value = await contract.methods.read().call({ from: accounts[0] });

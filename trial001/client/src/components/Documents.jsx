@@ -1,5 +1,5 @@
 import React , {useState, useEffect} from 'react'
-import db from '../Firebase'
+import {db} from '../Firebase'
 import { collection, query, onSnapshot } from 'firebase/firestore'
 
 export default function Documents() {
