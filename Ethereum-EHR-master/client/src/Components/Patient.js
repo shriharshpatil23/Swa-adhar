@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {  Button, Input, Upload,Icon, message, Row, Col, Tag, Card, Collapse } from 'antd';
+import Fileupload from './fileupload';
 
 import DisplayFiles from "./common/display_file";
 import ipfs from "./ipfs-util"
@@ -168,6 +169,8 @@ class Patient extends Component {
                             <input type="submit"></input>
                             </form>
                         </Card>
+                        <Fileupload 
+                        account = {this.props.Acc[0]}/>
                     </Col>
                 </Row>
                 <Row >

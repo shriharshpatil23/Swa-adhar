@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { storage } from "../firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
-function Fileupload() {
+function Fileupload({account}) {
+
+    
+    // var contract =this.props.contract['OPT'];
+    // var accounts =this.props.Acc;
+
+    // console.log(accounts)
+
     // State to store uploaded file
     const [file, setFile] = useState("");
 
@@ -13,13 +20,14 @@ function Fileupload() {
     function handleChange(event) {
         setFile(event.target.files[0]);
     }
-
+    
     const handleUpload = () => {
         if (!file) {
             alert("Please upload an image first!");
         }
-        
-        const storageRef = ref(storage, `/files/${file.name}`);
+        //var publicKey = this.accounts[0];
+        const storageRef = ref(storage, `/${account}/${file.name}`);
+
 
         // progress can be paused and resumed. It also exposes progress updates.
         // Receives the storage reference and the file to upload.
