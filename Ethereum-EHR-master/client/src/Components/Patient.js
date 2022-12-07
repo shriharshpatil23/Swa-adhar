@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {  Button, Input, Upload,Icon, message, Row, Col, Tag, Card, Collapse } from 'antd';
 import Fileupload from './fileupload';
-
+import ViewFiles from './ViewFiles';
 import DisplayFiles from "./common/display_file";
 import ipfs from "./ipfs-util"
 import axios from "axios";
@@ -162,19 +162,20 @@ class Patient extends Component {
                         </Card>
                     </Col>
                     <Col className='col-3' span={6}>
-                        <Card bordered={true}>
+                        {/* <Card bordered={true}>
                             <form onSubmit={this.uploadFile.bind(this)}>
-                            {/* <Input className='emailId' style={{width:"100%"}} value={this.state.secret} onChange={this.onTextChange.bind(this, 'secret')} size="small" placeholder="One Time Secret"/> */}
+                            
                             <input type="file" onChange={this.getFile.bind(this)}></input>
                             <input type="submit"></input>
                             </form>
-                        </Card>
+                        </Card> */}
                         <Fileupload 
                         account = {this.props.Acc[0]}/>
                     </Col>
                 </Row>
                 <Row >
-                    <input type="button" onClick={this.loadFiles.bind(this) } value="See Files"></input>
+                    <ViewFiles account={this.props.Acc[0]}/>
+                    {/* <input type="button" onClick={this.loadFiles.bind(this) } value="See Files"></input>
                     <Collapse className='folderTab' defaultActiveKey={['1']}>
                         <Panel   header={<Icon type="folder" />} key="1">
                             { 
@@ -197,7 +198,7 @@ class Patient extends Component {
                                 }) 
                             }
                         </Panel>
-                    </Collapse>
+                    </Collapse> */}
                 </Row>
             </div>
         );

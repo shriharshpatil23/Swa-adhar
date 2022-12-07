@@ -3,13 +3,17 @@ import { storage } from "../firebaseConfig";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 
-function Filedownload() {
+function Filedownload({account , FileName}) {
     const handledownload = () => {
-        const starsRef = ref(storage, 'files/TE Interns Exp Letter (1).pdf');
+        console.log(account)
+        console.log(FileName)
+        const starsRef = ref(storage, `/${account}/${FileName}`);
         // Get the download URL
         getDownloadURL(starsRef)
         .then((url) => {
             console.log(url);
+            window.open(url, '_blank', 'noreferrer');
+
             // Insert url into an <img> tag to "download"
         })
         .catch((error) => {
@@ -39,7 +43,7 @@ function Filedownload() {
 
     return (
         <div>
-            <button onClick={handledownload}>download from firebase </button>
+            <button onClick={handledownload}> { FileName }</button>
         </div>
     );
 }

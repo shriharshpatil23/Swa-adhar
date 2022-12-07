@@ -8,7 +8,7 @@ import DocLogin from "./Components/DocLogin";
 import Doctor from "./Components/Doctor";
 import Patient from "./Components/Patient";
 import NavbarComp from "./Components/NavbarComp";
-
+import ViewFiles from "./Components/ViewFiles";
 import "./App.css";
 import "./Components/css/antd.css"
 import 'antd/dist/antd.css';
@@ -72,6 +72,7 @@ class App extends Component {
                :this.state.loggedas==0?<Doctor contract={this.state.contract} Acc={this.state.accounts}/>:<Patient contract={this.state.contract} Acc={this.state.accounts}/>}
                
                </div>
+     
                
     );
   }
