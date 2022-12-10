@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {Form,Button,Navbar,Nav,FormControl} from 'react-bootstrap';
-
+import "./Navbar.css";
 
 class NavbarComp extends Component{
     
@@ -13,8 +13,8 @@ class NavbarComp extends Component{
           
             <div bg="dark">
                 
-              <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="#home">Welcome To Swa-adhar</Navbar.Brand>
+              <Navbar style={{backgroundSize: "0", backgroundColor: "#6191FE" }} >
+                <Navbar.Brand >Swa-adhar</Navbar.Brand>
                 <Nav className="mr-auto">
                   {/* <Nav.Link href="#home">Home</Nav.Link>
                   <Nav.Link href="#features">Features</Nav.Link>

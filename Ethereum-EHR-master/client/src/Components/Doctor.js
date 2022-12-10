@@ -3,14 +3,16 @@ import React, { Component } from 'react';
 import {  Row, Col, Card, Tag } from 'antd';
 //import { connect } from "react-redux";
 import DisplayPatient from "./display_patient";
-
+import { ReactComponent as Doctorlogo} from './logo/doctorlogo.svg'
+import { Button } from '@material-ui/core';
+import PatientInfoTab from './PatientInfo';
 class Doctor extends Component {
 
     constructor(props){
         super(props);
     }
-     healthRecord =this.props.contract["OPT"];
-     Acc =this.props.Acc;
+    healthRecord =this.props.contract["OPT"];
+    Acc =this.props.Acc;
     state = {
         name: "",
         patient_list: [],
@@ -19,8 +21,7 @@ class Doctor extends Component {
     }
 
     componentDidMount(){
-        
-            this.loadDoctor();
+        this.loadDoctor();
     }
 
     
@@ -34,27 +35,46 @@ class Doctor extends Component {
         let { name, patient_list } = this.state;
         return (
             <div>
-                <Card bordered={true}>
-                    <div>
-                        name: {name}
-                    </div>
-                </Card>
+                
                 <Row gutter={16} style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
+                    {/* <Col className='col-sm-10' span={10}>
+                        <hr></hr>
+                        <Doctorlogo/>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                            <Button variant="outline-info"  >
+                                Name : {name}
+                            </Button>
+                        <br></br>
+                        <br></br>
+                    </Col> */}
                     <Col className='col-sm-10' span={10}>
                         <Card bordered={true} style={flexStyle}>
                             { 
                                 patient_list.map((patient) => {
-                                return <div><Tag onClick={()=>this.setState({load_patient:patient})}>{patient}</Tag></div>
+                                return <div>
+                                    <PatientInfoTab
+                                        account={patient}
+                                        contract={this.healthRecord}
+                                    />
+                                    <Tag onClick={()=>this.setState({load_patient:patient})}>Click Here To View Files</Tag>
+                                
+                                </div>
                                 }) 
                             }
                         </Card>
+                        {/* {
+                            patient_list.map(item => <> <br></br>   </> )
+                        } */}
+                        
                     </Col>
 					<br/>
                     <Col className='col-sm-6' span={6} style={{width: "58%"}}>
                         {
-                            this.state.load_patient ?
-                            <div>Patients List<DisplayPatient contract ={this.healthRecord} Acc={this.Acc} patient_address={this.state.load_patient} /></div> :
-                            <div>No Patients To Show</div>
+                                this.state.load_patient ?
+                                <div>Patients List<DisplayPatient contract ={this.healthRecord} Acc={this.Acc} patient_address={this.state.load_patient} /></div> :
+                                <div>No Patients To Show</div>
                         }
                     </Col>
                 </Row>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { storage } from "../firebaseConfig";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ReactComponent as UploadLogo } from './logo/UploadLogo.svg'
+import "./fileupload.css"
+import { Button } from '@material-ui/core';
 
 function Fileupload({account}) {
 
@@ -23,7 +26,7 @@ function Fileupload({account}) {
     
     const handleUpload = () => {
         if (!file) {
-            alert("Please upload an image first!");
+            alert("Please upload a File first!");
         }
         //var publicKey = this.accounts[0];
         const storageRef = ref(storage, `/${account}/${file.name}`);
@@ -54,10 +57,28 @@ function Fileupload({account}) {
     };
 
     return (
-        <div>
-            <input type="file" onChange={handleChange} accept="/image/*" />
-            <button onClick={handleUpload}>Upload to Firebase</button>
-            <p>{percent} "% done"</p>
+        <div class="FileUploadDIv">
+            <hr></hr>
+            <UploadLogo/>
+
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <div class="file-upload">
+            <div class="file-select">
+                <div class="file-select-button" id="fileName">Choose File</div>
+                <div class="file-select-name" id="noFile">{file.name}</div> 
+
+                <input type="file" name="chooseFile" onChange={handleChange} id="chooseFile"/>
+            </div>
+            </div>
+            <br></br>
+            <br></br>
+            <Button  color="primary" variant="outlined" bg="dark" onClick={handleUpload} >
+                Upload File
+            </Button>
+            <p class="Filepercentage">{percent} "% done"</p>
         </div>
     );
 }

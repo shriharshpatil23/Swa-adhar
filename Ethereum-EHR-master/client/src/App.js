@@ -9,6 +9,9 @@ import Doctor from "./Components/Doctor";
 import Patient from "./Components/Patient";
 import NavbarComp from "./Components/NavbarComp";
 import ViewFiles from "./Components/ViewFiles";
+import Fileupload from "./Components/fileupload";
+import GrantAccess from "./Components/GrantAccess";
+import DisplayInfo from "./Components/DisplayInfo";
 import "./App.css";
 import "./Components/css/antd.css"
 import 'antd/dist/antd.css';
@@ -70,8 +73,14 @@ class App extends Component {
           </form> */}
           {!this.state.loggedAcc ? <DocLogin onlogin={(loggedAcc,loggedas)=>this.setState({loggedAcc,loggedas})} state = {this.state}/>
                :this.state.loggedas==0?<Doctor contract={this.state.contract} Acc={this.state.accounts}/>:<Patient contract={this.state.contract} Acc={this.state.accounts}/>}
-               
-               </div>
+          {/* <Fileupload account={this.state.accounts}/>
+          <ViewFiles account={this.state.accounts} /> */}
+          {/* <GrantAccess/> */}
+          {/* <DisplayInfo
+            account = {this.props.accounts}
+            contract= {this.props.contract}
+          /> */}
+      </div>
      
                
     );

@@ -1,0 +1,28 @@
+
+  navbar-brand {
+    display: block;
+  }
+.navbar-light .navbar-brand {
+    color: #FFFFFF;
+    align-items: center;
+    /* font-family: 'Poppins'; */
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 75px;
+
+}
+
+.navbar {
+    min-height: 80px;
+  }
+  
+.navbar-expand {    
+    flex-flow: row;
+    justify-content: center;
+}
+
+
+
+
+  

@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { getPatientInfoForDoctor } from './eth-util';
 import { getFileInfo } from "./eth-util";
 import {  Icon, Card,Collapse } from 'antd';
-
+import ViewFiles from "./ViewFiles" 
 //import { connect } from "react-redux";
 import PopUp from "./common/popup";
 import DisplayFiles from "./common/display_file";
 //import { getBytes32FromIpfsHash } from "./ipfs-util"
 import axios from "axios";
-const Panel = Collapse.Panel;
+import Button from 'react-bootstrap/Button';
 
+const Panel = Collapse.Panel;
 class DisplayPatient extends Component {
 
     constructor(props){
@@ -27,11 +28,10 @@ class DisplayPatient extends Component {
     contract = this.props.contract;
     Acc= this.props.Acc;
     async loadFiles(){
-
         const data = await this.contract.methods.getPatientInfoForDoctor(this.props.patient_address).call({from:this.Acc[0]});
         console.log('files',data);
         if(data[3])
-        this.setState({patient_name:data[0],patient_age:data[1],files:data[3]});
+            this.setState({patient_name:data[0],patient_age:data[1],files:data[3]});
 
         console.log('files',this.state.files);
     }
@@ -91,31 +91,43 @@ class DisplayPatient extends Component {
         //let { token } = this.props.auth;
 
         return(
-            <div style={{width:"100%"}}>
-                <Card bordered={true} style={flexStyle}>
-                    <h4>patient address: {patient_address}</h4>
-                    <h4> patien name: {patient_name}</h4>
-                    <h4>patient age: {patient_age}</h4>
-                </Card>
-                <div style={{height: "500px", overflowY: "scroll"}}>
-                <Collapse className='folderTab' defaultActiveKey={['1']}>
-                        <Panel   header={<Icon type="folder" />} key="1">
-                            { 
-                                files.map((fhash, i) => {
-                                    let filename = this.state.files[i]?this.state.files[i][0]:null;
-                                    //let diplayImage = "/ipfs_file?hash="+fhash+"&file_name="+filename;
-                                    let diplayImage = `https://ipfs.io/ipfs/${this.state.files[i][2]}`;
-                                    // "&role=patient&token="+token+"&patient_address="+web3.eth.accounts[0];
-                                    //let diplayImage=null;
-                                    let fileProps = {fhash, filename, diplayImage, i};
+            // <div style={{width:"100%"}}>
+            //     <Card bordered={true} style={flexStyle}>
+            //         <h4>patient address: {patient_address}</h4>
+            //         <h4> patien name: {patient_name}</h4>
+            //         <h4>patient age: {patient_age}</h4>
+            //     </Card>
+            //     <div style={{height: "500px", overflowY: "scroll"}}>
+            //     <Collapse className='folderTab' defaultActiveKey={['1']}>
+            //             <Panel   header={<Icon type="folder" />} key="1">
+            //                 { 
+            //                     files.map((fhash, i) => {
+            //                         let filename = this.state.files[i]?this.state.files[i][0]:null;
+            //                         //let diplayImage = "/ipfs_file?hash="+fhash+"&file_name="+filename;
+            //                         let diplayImage = `https://ipfs.io/ipfs/${this.state.files[i][2]}`;
+            //                         // "&role=patient&token="+token+"&patient_address="+web3.eth.accounts[0];
+            //                         //let diplayImage=null;
+            //                         let fileProps = {fhash, filename, diplayImage, i};
                                     
-                                    return <DisplayFiles that={this} props={fileProps}/>
-                                }) 
-                            }
-                        </Panel>
+            //                         return <DisplayFiles that={this} props={fileProps}/>
+            //                     }) 
+            //                 }
+            //             </Panel>
                        
-                    </Collapse>
-                </div>
+            //         </Collapse>
+            //     </div>
+            // </div>
+            <div style = {{border:"1px solid black "}} className="SelectedPatient">
+                <Button variant="outline-info"  >
+                    Name : {patient_name}
+                </Button>
+                <br></br>
+                <Button variant="outline-info" >
+                    Age : {patient_age}
+                </Button>
+                <ViewFiles
+                    account={patient_address}
+                />
             </div>
         );
     }

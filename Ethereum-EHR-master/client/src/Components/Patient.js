@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import {  Button, Input, Upload,Icon, message, Row, Col, Tag, Card, Collapse } from 'antd';
 import Fileupload from './fileupload';
 import ViewFiles from './ViewFiles';
+import GrantAccess from './GrantAccess';
+import DisplayInfo from './DisplayInfo';
 import DisplayFiles from "./common/display_file";
 import ipfs from "./ipfs-util"
 import axios from "axios";
+import { ReactComponent as PatientLogo} from './logo/patientlogo.svg'
+
 const Panel = Collapse.Panel;
  const Dragger = Upload.Dragger;
 
@@ -143,62 +147,58 @@ class Patient extends Component {
             <div>
                 <Row gutter={16} style={{display:"flex",flexDirection:"row",justifyContent:"space-between"}}>
                     <Col className='col-3' span={6}>
-                        <Card bordered={true} >
+                        {/* <Card bordered={true} >
                             <div className='userDetails'  >
 									<span>Name: {name}</span>
 									<span>Age: {age}</span>
 								
                             </div>
-                        </Card>
+                        </Card> */}
+                        <div>
+                            <hr></hr>
+                            <PatientLogo/>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                                <Button variant="outline-info"  >
+                                    Name : {name}
+                                </Button>
+                            <br></br>
+                            <br></br>
+                                <Button variant="outline-info" >
+                                    Age : {age}
+                                </Button>
+
+                        </div>
+                        {/* <DisplayInfo 
+                            account = {this.props.Acc[0]}
+                            contract= {this.props.contract['OPT']}
+                        /> */}
                     </Col>
+
                     <Col className='col-3' span={6}>
-                        <Card bordered={true}>
+                        {/* <Card bordered={true}>
                             <div style={flexStyle}>
                             <Input className='emailId' style={{width:"100%"}} value={this.state.doctorId} onChange={this.onTextChange.bind(this, 'doctorId')} size="small" placeholder="Doctor Address"/>
                                 <Button type="primary" onClick={this.grantAccess.bind(this)} htmlType="submit" className="login-form-button loginButton">
                                     Grant Access
                                 </Button>
                             </div>
-                        </Card>
+                        </Card> */}
+                        <GrantAccess
+                        account = {this.props.Acc[0]}
+                        contract = {this.contract}
+                        />
+
                     </Col>
                     <Col className='col-3' span={6}>
-                        {/* <Card bordered={true}>
-                            <form onSubmit={this.uploadFile.bind(this)}>
-                            
-                            <input type="file" onChange={this.getFile.bind(this)}></input>
-                            <input type="submit"></input>
-                            </form>
-                        </Card> */}
                         <Fileupload 
                         account = {this.props.Acc[0]}/>
                     </Col>
-                </Row>
-                <Row >
-                    <ViewFiles account={this.props.Acc[0]}/>
-                    {/* <input type="button" onClick={this.loadFiles.bind(this) } value="See Files"></input>
-                    <Collapse className='folderTab' defaultActiveKey={['1']}>
-                        <Panel   header={<Icon type="folder" />} key="1">
-                            { 
-                                files.map((fhash, i) => {
-                                    let filename = this.state.files[i]?this.state.files[i][0]:null;
-                                    //let diplayImage = "/ipfs_file?hash="+fhash+"&file_name="+filename;
-                                    let diplayImage = `https://ipfs.io/ipfs/${this.state.files[i][2]}`;
-                                    // "&role=patient&token="+token+"&patient_address="+web3.eth.accounts[0];
-                                    //let diplayImage=null;
-                                    let fileProps = {fhash, filename, diplayImage, i};
-                                    
-                                    return <DisplayFiles that={this} props={fileProps}/>
-                                }) 
-                            }
-                        </Panel>
-                        <Panel header="Doctors List" key="2">
-                            { 
-                                doctor_list.map((doctor) => {
-                                    return <Tag>{doctor}</Tag>
-                                }) 
-                            }
-                        </Panel>
-                    </Collapse> */}
+                    <Col className='col-3' span={6}>
+                        <ViewFiles account={this.props.Acc[0]}/>
+
+                    </Col>
                 </Row>
             </div>
         );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { storage } from "../firebaseConfig";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { Button } from '@material-ui/core';
 
 
 function Filedownload({account , FileName}) {
@@ -43,7 +44,10 @@ function Filedownload({account , FileName}) {
 
     return (
         <div>
-            <button onClick={handledownload}> { FileName }</button>
+            <Button size="large" color="primary" variant="outlined" bg="dark" onClick={handledownload} >
+                { FileName }
+            </Button>
+            {/* <button onClick={handledownload}> { FileName }</button> */}
         </div>
     );
 }
